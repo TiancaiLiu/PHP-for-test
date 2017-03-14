@@ -60,7 +60,20 @@ execute($link, $charset);
 	</div>
 	<div class="hr_25"></div>
 	<div class="shopping_item">
-		<h3 class="shopping_tit">送货清单<a href="#" class="backCar">返回购物车修改</a></h3>
+		<h3 class="shopping_tit">送货清单<input class="backCar" type="button" value="清空购物车" onclick="clearCart()">
+		</h3>
+		<script type="text/javascript">
+			function clearCart() {
+				var url = "clear.php";
+				var success = function(response) {
+					if(response.errno == 0) {
+						$(".products").remove();
+						$("#total").remove();
+					}
+				}
+				$.get(url, success, "json");
+			}
+		</script>
 		<div class="shopping_cont pb_10">
 			<div class="cart_inner">
 				<div class="cart_head clearfix">
@@ -76,7 +89,7 @@ execute($link, $charset);
 				$result = execute($link, $query);
 				while($data = mysqli_fetch_assoc($result)) {
 				?>
-				<div id="div-<?php echo $data['id']?>">
+				<div id="div-<?php echo $data['id']?>" class="products">
 				<div class="cart_cont clearfix">
 					<div class="cart_item t_name">
 						<div class="cart_shopInfo clearfix">
@@ -115,7 +128,7 @@ execute($link, $charset);
 		<div class="shopping_cont padding_shop clearfix">
 			<div class="cart_count fr">
 				<div class="cart_rmb">
-					<i>总计：</i><span>￥<?php echo $total?></span>
+					<i>总计：</i><span id="total">￥<?php echo $total?></span>
 				</div>
 				<div class="cart_btnBox">
 					<input type="button" class="cart_btn" value="提交订单">

@@ -1,15 +1,14 @@
-<?php  
+<?php 
 include 'inc/config.inc.php';
 include 'inc/mysql.inc.php';
 $link = connect();
 $charset = "SET NAMES 'utf8';";
 execute($link, $charset);
-//完成对数据表的删除操作
-$productid = intval($_POST['productid']);
+
 $userid = 1;
-$query = "DELETE FROM `shop_cart` WHERE productid=$productid and userid=$userid";
+$query = "DELETE FROM `shop_cart` WHERE userid=$userid";
 execute($link, $query);
-if(mysqli_affected_rows($link) == 1){
+if(mysqli_affected_rows($link)) {
 	$response = array(
 			'errno'  =>  '0',
 			'errmsg' =>  'success',
@@ -21,7 +20,6 @@ if(mysqli_affected_rows($link) == 1){
 			'errmsg' =>  'fail',
 			'data'   =>  false,
 		);
-}	
-
- echo json_encode($response);
-?>
+}
+echo json_encode($response);
+ ?>
