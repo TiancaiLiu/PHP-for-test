@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax-iframe文件上传</title>
+	<script type="text/javascript" src="../ajaxfortest/jquery.js"></script>
+	<script type="text/javascript">
+	/*
+		分析:
+			1.捕捉表单的提交动作
+			2.创建一个iframe
+			3.把表单的target修改指向该iframe
+			4.去掉这个iframe
+	*/	
+		function ajaxup() {
+			var ifname = 'up' + Math.random();
+			$('<iframe name="' + ifname + '" width="0" height="0" frameBorder="0"></iframe>').appendTo($('body'));
+			$('form:first').attr('target', ifname);
+			$('#progress').html('<img src="timg.gif" />');
+
+		}
+	</script>
+	<style type="text/css">
+	
+	</style>
+</head>
+<body>
+		<h1>iframe模拟Ajax文件上传效果</h1>
+		<div id="progress"></div>
+		<form action="up.php" method="post" enctype="multipart/form-data" onsubmit="return ajaxup();">
+			<p><input type="file" name="pic" /></p>
+			<p><input type="submit" value="提交" /></p>
+		</form>
+</body>
+</html>
