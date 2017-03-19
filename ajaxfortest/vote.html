@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>投票</title>
+</head>
+<script type="text/javascript">
+	function vote(){
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', 'vote.php', true);
+		xhr.send(null);
+		//绑定状态变化的回调函数
+		xhr.onreadystatechange = function() {
+			if(this.readyState == 4 && this.status == 200) {
+			// 	if(this.responseText == '1') {
+			// 		document.getElementById('progress').innerHTML = '投票成功';
+			// 	}else if(this.responseText == '0') {
+			// 		document.getElementById('progress').innerHTML = '投票失败';
+			// 	}
+			// }else{
+			// 	document.getElementById('progress').innerHTML = this.responseText;
+			// }
+			var str = '';
+			str = '状态码是' + this.status + '<br />';
+			str = str + '状态文字是' + this.statusText + '<br />';
+			str = str + '返回类型是' + this.getResponseHeader('Content-Type') + '<br />';
+			str = str + '返回的主体长度' + this.getResponseHeader('Content-Length') + '<br />';
+			str = str + '返回的主体内容' + this.responseText + '<br />';
+			str = str + '所有头信息' + this.getAllResponseHeaders(); 
+			document.getElementById('progress').innerHTML = str;
+		}
+	}
+}
+</script>
+<body>
+	<div>
+		<p><img src="img/jj.jpg" /></p>
+		<p><input type="button" value="投票" onclick="vote();"></p>
+	</div>
+	<div id="progress"></div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单注册</title>
+	<script type="text/javascript">
+		var xhr = new XMLHttpRequest();
+		function ajaxreg() {
+			xhr.open('POST', 'reg.php', true);
+			xhr.onreadystatechange = function() {
+				if(this.readyState == 4) {
+					alert(this.responseText);
+				}
+			}
+			var un = document.getElementsByName('username')[0].value;
+			var eml = document.getElementsByName('email')[0].value;
+			//alert('username=' + username + '&emial=' + email);
+			xhr.setRequestHeader('Content-Type','application/x-www-form-unlencoded');
+			xhr.send('username=' + un + '&email=' + eml);
+
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<h1>ajax注册</h1>
+	<div id="regres"></div>
+	<form action="reg.php" method="post" target="regzone" onsubmit=" return ajaxreg();">
+		<p>用户名:<input type="text" name="username" /></p>
+		<p>邮箱地址:<input type="text" name="email" /></p>
+		<p><input type="submit" name="注册" /></p>
+	</form>
+	<iframe width="0" height="0" frameborder="0" name="regzone"></iframe>
+</body>
+</html>
