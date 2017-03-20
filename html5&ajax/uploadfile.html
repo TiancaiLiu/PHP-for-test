@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../ajaxfortest/jquery.js"></script>
+	<script type="text/javascript">
+		function selfile() {
+			//创建formdata对象
+			var fd = new FormData();
+			//获取文件对象
+			var pic = document.getElementsByTagName('input')[0].files[0];
+			//把文件内容追加到表单数据里
+			fd.append('pic', pic);
+
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'formData.php', true);
+			//利用xhr2的新标准，为上传过程写一个监听函数
+			xhr.upload.onprogress = function(ev) {
+				if(ev.lengthComputable) {
+					var percent = 100 * ev.loaded/ev.total;
+					document.getElementById('bar').style.width = percent + '%';
+					document.getElementById('bar').innerHTML = parseInt(percent) + '%';
+				}
+			}
+			xhr.send(fd);						
+ 		}
+	</script>
+	<style type="text/css">
+		#progress{
+			width: 300px;
+			height: 30px;
+			border: 1px solid #2f4f4f;
+			border-radius: 15px;
+		}
+		#bar{
+			width: 0%;
+			height: 100%;
+			background: #2f4f4f;
+			border-radius: 15px;
+			color: #fff;
+			text-align: right;
+			line-height: 30px;
+		}
+	</style>
+</head>
+<body>
+	<h1>html5进度条文件上传</h1>
+	<div id="progress">
+		<div id="bar"></div>
+	</div>
+	<input type="file" name="pic" onchange="selfile();">
+</body>
+</html>
