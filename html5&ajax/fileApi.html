@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="../ajaxfortest/jquery.js"></script>
+	<script type="text/javascript">
+		function selfile() {
+			/*
+			var fd = new FormData();
+			var pic = document.getElementsByTagName('input')[0].files[0];
+			fd.append('pic', pic);
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'upfile.php', true);
+			xhr.onreadystatechange = function() {
+				if(this.readyState == 4) {
+					document.getElementById('debug').innerHTML = this.responseText;
+				}
+			}
+			xhr.send(fd);
+			*/
+			
+			var pic = document.getElementsByTagName('input')[0].files[0];
+			var debug = document.getElementById('debug');
+			var content = '';
+			content += '文件名称' + pic.name + '<br />';
+			content += '文件大小' + pic.size + '<br />';
+			debug.innerHTML = content;
+			var tmping = document.createElement('img');
+			//调用window.URL.createObjectURL()对象，使上传的图片实时显示
+			tmping.src = window.URL.createObjectURL(pic);
+			document.getElementsByTagName('body')[0].appendChild(tmping);
+			
+ 		}
+	</script>
+	<style type="text/css">
+		img{width: 300px;height: 300px;border: 1px solid #000;}
+	</style>
+</head>
+<body>
+	<input type="file" name="pic" onchange="selfile();">
+	<div id="debug"></div>
+</body>
+</html>
