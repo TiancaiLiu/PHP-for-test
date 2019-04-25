@@ -1,6 +1,6 @@
 <?php
 /**
- *建表语句
+ *建表语句 
  *CREATE TABLE `category` (
  * `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
  * `name` varchar(25) NOT NULL DEFAULT '',
