@@ -1,18 +1,18 @@
 <?php
 /**
- 建表语句
- CREATE TABLE `category` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(25) NOT NULL DEFAULT '',
-  `pid` int(11) DEFAULT NULL,
-  `path` varchar(25) DEFAULT NULL,
-  `level` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
-
-不需要递归的构建二维数组，通过对path进行排序
-select * from category order by path;
-*/
+ *建表语句
+ *CREATE TABLE `category` (
+ * `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+ * `name` varchar(25) NOT NULL DEFAULT '',
+ * `pid` int(11) DEFAULT NULL,
+ * `path` varchar(25) DEFAULT NULL,
+ * `level` tinyint(1) DEFAULT NULL,
+ * PRIMARY KEY (`id`)
+ *) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+ *
+ *不需要递归的构建二维数组，通过对path进行排序
+ *select * from category order by path;
+ */
 
 $arr = array(
 	['id'=>1,'name'=>'服饰','pid'=>0,'path'=>'0,1','level' => 1],
