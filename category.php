@@ -79,7 +79,7 @@ class Category{
 	}
 	
 	// 传递一个父级id，返回所有子类id
-	public static function function getChildsId($cate, $id) 
+	public static function getChildsId($cate, $id) 
 	{
 		$arr = array();
 		foreach ($cate as $v) {
@@ -92,7 +92,7 @@ class Category{
 	}
 	
 	// 传递一个父级id，返回所有子类
-	public static function function getChilds($cate, $id) 
+	public static function getChilds($cate, $id) 
 	{
 		$arr = array();
 		foreach ($cate as $v) {
